@@ -1,0 +1,8 @@
+{
+  "name": "Dota 2 Profile",
+  "description": "Профиль для Dota 2 с блокировкой Discord и браузеров",
+  "games": ["dota2.exe"],
+  "forbidden_apps": ["Discord.exe", "chrome.exe", "firefox.exe", "Telegram.exe"],
+  "cruelty_mode": "INPUT_BLOCK",
+  "safety_key": "ctrl+shift+f10"
+}

@@ -1,0 +1,8 @@
+{
+  "name": "Default Profile",
+  "description": "Базовый профиль по умолчанию",
+  "games": [],
+  "forbidden_apps": [],
+  "cruelty_mode": "INPUT_BLOCK",
+  "safety_key": "ctrl+alt+f12"
+}

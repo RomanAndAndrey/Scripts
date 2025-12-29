@@ -1,0 +1,21 @@
+{
+  "games": [
+    "dota2.exe", 
+    "cs2.exe", 
+    "notepad.exe", 
+    "RainbowSix.exe", 
+    "RDR2.exe", 
+    "nightreign.exe", 
+    "EoCApp.exe", 
+    "bg3_dx11.exe",
+    "GhostOfTsushima.exe"
+  ],
+  "forbidden_apps": [
+    "chrome.exe", 
+    "telegram.exe", 
+    "discord.exe", 
+    "firefox.exe"
+  ],
+  "cruelty_mode": "INPUT_BLOCK", 
+  "safety_key": "ctrl+alt+f12"
+}

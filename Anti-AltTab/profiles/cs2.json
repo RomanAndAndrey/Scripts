@@ -1,0 +1,8 @@
+{
+  "name": "CS2 Profile",
+  "description": "Профиль для Counter-Strike 2",
+  "games": ["cs2.exe"],
+  "forbidden_apps": ["Discord.exe", "Spotify.exe", "chrome.exe"],
+  "cruelty_mode": "REFOCUS",
+  "safety_key": "ctrl+alt+p"
+}

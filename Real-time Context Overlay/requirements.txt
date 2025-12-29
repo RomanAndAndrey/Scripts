@@ -1,0 +1,9 @@
+customtkinter
+openai-whisper
+sounddevice
+soundfile
+numpy
+SpeechRecognition
+groq
+python-dotenv
+torch --index-url https://download.pytorch.org/whl/cu118

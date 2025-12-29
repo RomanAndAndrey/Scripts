@@ -1,0 +1,33 @@
+2025-12-30 01:47:31,602 - utils - INFO - Loaded 7 scripts from config
+2025-12-30 01:47:31,787 - utils - INFO - Application started successfully
+2025-12-30 01:47:35,404 - utils - INFO - Starting script: Тестовый Пинг
+2025-12-30 01:47:36,840 - utils - INFO - User stopped script: Тестовый Пинг
+2025-12-30 01:47:36,842 - utils - INFO - Script finished: Тестовый Пинг, exit code: 1
+2025-12-30 01:47:38,615 - utils - INFO - Starting script: Anti-AltTab
+2025-12-30 01:47:39,900 - utils - INFO - User stopped script: Anti-AltTab
+2025-12-30 01:47:39,905 - utils - INFO - Script finished: Anti-AltTab, exit code: 1
+2025-12-30 01:47:41,961 - utils - INFO - Starting script: Организатор Файлов
+2025-12-30 01:47:42,282 - utils - INFO - Script finished: Организатор Файлов, exit code: 1
+2025-12-30 01:48:22,965 - utils - INFO - Starting script: Организатор Файлов
+2025-12-30 01:48:23,213 - utils - INFO - Script finished: Организатор Файлов, exit code: 1
+2025-12-30 01:49:09,726 - utils - INFO - Starting script: Организатор Файлов
+2025-12-30 01:49:40,971 - utils - INFO - User stopped script: Организатор Файлов
+2025-12-30 01:49:40,975 - utils - INFO - Script finished: Организатор Файлов, exit code: 1
+2025-12-30 01:49:42,270 - utils - INFO - Starting script: Dota Coach
+2025-12-30 01:49:44,985 - utils - INFO - User stopped script: Dota Coach
+2025-12-30 01:49:44,992 - utils - INFO - Script finished: Dota Coach, exit code: 1
+2025-12-30 01:49:46,859 - utils - INFO - Starting script: Context Overlay
+2025-12-30 01:50:09,548 - utils - INFO - User stopped script: Context Overlay
+2025-12-30 01:50:09,668 - utils - INFO - Script finished: Context Overlay, exit code: 1
+2025-12-30 01:50:33,602 - utils - INFO - Starting script: YouTube Downloader
+2025-12-30 01:51:46,616 - utils - INFO - Script finished: YouTube Downloader, exit code: 0
+2025-12-30 01:54:35,408 - utils - INFO - Loaded 7 scripts from config
+2025-12-30 01:54:35,617 - utils - INFO - Application started successfully
+2025-12-30 01:56:10,380 - utils - INFO - Loaded 7 scripts from config
+2025-12-30 01:56:11,011 - utils - INFO - Application started successfully
+2025-12-30 01:56:24,724 - utils - INFO - Starting script: Организатор Файлов
+2025-12-30 01:56:55,426 - utils - INFO - Starting script: Тестовый Пинг
+2025-12-30 01:56:57,056 - utils - INFO - User stopped script: Тестовый Пинг
+2025-12-30 01:56:57,057 - utils - INFO - Script finished: Тестовый Пинг, exit code: 1
+2025-12-30 01:56:58,975 - utils - INFO - User stopped script: Организатор Файлов
+2025-12-30 01:56:58,978 - utils - INFO - Script finished: Организатор Файлов, exit code: 1

@@ -1,0 +1,15 @@
+{
+  "detection": {
+    "threshold": 15,
+    "region_size": 200,
+    "check_interval": 1.0
+  },
+  "ui": {
+    "title_font": ["Arial", 32, "bold"],
+    "tip_font": ["Arial", 24]
+  },
+  "calibration": {
+    "calibrated": false,
+    "last_calibration": null
+  }
+}

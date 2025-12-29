@@ -1,0 +1,78 @@
+{
+  "scripts": {
+    "Тестовый Пинг": {
+      "path": "../ScriptLauncher/test_script.py",
+      "args": ["--count", "50", "--message", "ConcurrentPing"],
+      "cwd": "../ScriptLauncher",
+      "description": "Запускает тестовый скрипт, печатающий сообщения каждые 0.5с."
+    },
+    "Anti-AltTab": {
+      "path": "../Anti-AltTab/main.py",
+      "args": [],
+      "cwd": "../Anti-AltTab",
+      "description": "Утилита для блокировки Alt+Tab во время игры."
+    },
+    "Организатор Файлов": {
+      "path": "../FileOrganizer/organizer.py",
+      "args": [],
+      "cwd": "../FileOrganizer",
+      "description": "Сортирует файлы в папке Загрузки по категориям."
+    },
+    "Dota Coach": {
+      "path": "../DotaCoach/main.py",
+      "args": [],
+      "cwd": "../DotaCoach",
+      "description": "Оверлей для Dota 2 с анализом смерти."
+    },
+    "Context Overlay": {
+      "path": "../Real-time Context Overlay/main.py",
+      "args": [],
+      "cwd": "../Real-time Context Overlay",
+      "description": "AI-ассистент с распознаванием речи."
+    },
+    "YouTube Downloader": {
+      "path": "../YouTubeDownloader/yt_load.py",
+      "cwd": "../YouTubeDownloader",
+      "description": "Скачивание видео и музыки с YouTube (yt-dlp).",
+      "inputs": [
+        {
+          "name": "url",
+          "label": "Ссылка на видео/плейлист",
+          "type": "entry",
+          "arg_format": "{value}",
+          "placeholder": "https://www.youtube.com/watch?v=..."
+        },
+        {
+          "name": "type",
+          "label": "Тип",
+          "type": "combo",
+          "values": ["video", "audio"],
+          "default": "video",
+          "arg_format": "--type {value}"
+        },
+        {
+          "name": "quality",
+          "label": "Качество (только видео)",
+          "type": "combo",
+          "values": ["2160p", "1440p", "1080p", "720p", "480p"],
+          "default": "1080p",
+          "arg_format": "--quality {value}"
+        },
+        {
+          "name": "browser",
+          "label": "Cookies из браузера (для обхода защиты)",
+          "type": "combo",
+          "values": ["none", "chrome", "firefox", "opera", "edge", "vivaldi"],
+          "default": "none",
+          "arg_format": "--browser {value}"
+        }
+      ]
+    },
+    "Code to Slides": {
+      "path": "../Code to Slides/generate_presentation.py",
+      "args": [],
+      "cwd": "../Code to Slides",
+      "description": "Генератор PowerPoint презентаций из Markdown файлов."
+    }
+  }
+}
