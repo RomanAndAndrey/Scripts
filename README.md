@@ -32,7 +32,29 @@ AI-ассистент с распознаванием речи через Whispe
 ### 🚀 [ScriptLauncher](./ScriptLauncher)
 Web-интерфейс на Streamlit для запуска Python скриптов.
 
-## 🛠️ Технологии
+---
+
+## 📚 Common Library
+
+Переиспользуемая библиотека для всех проектов с компонентами:
+- **logger.py** - универсальное логирование с ротацией файлов
+- **config.py** - загрузка/сохранение JSON конфигураций
+- **file_utils.py** - безопасные файловые операции
+- **validators.py** - валидация данных
+- **exceptions.py** - кастомные исключения
+
+**Использование:**
+```python
+from common.logger import setup_logger
+from common.config import load_json_config
+
+logger = setup_logger("MyApp", log_file=Path("app.log"))
+config = load_json_config(Path("config.json"), create_if_missing=True)
+```
+
+См. [common/README.md](./common/README.md) для подробностей.
+
+---
 
 - **Python 3.11+**
 - **CustomTkinter** - GUI
@@ -110,10 +132,12 @@ pre-commit install
 
 ## 📊 Статистика Проекта
 
-- **Проектов:** 8
-- **Строк кода:** ~3500+ (с типизацией)
-- **Покрытие тестами:** В разработке
+- **Проектов:** 8 + common библиотека
+- **Строк кода:** ~4000+ (с типизацией)
+- **Покрытие тестами:** 48%
 - **Документация:** 100% (README для каждого проекта)
+- **Модулей в common:** 5
+- **Тестов common:** 10/10 прошли
 
 ## 🎯 Фазы Разработки
 
@@ -122,6 +146,7 @@ pre-commit install
 - ✅ **Фаза 3:** Типизация и документация (100%)
 - ✅ **Фаза 4:** Новые фичи (100%)
 - ✅ **Фаза 5:** CI/CD и автоматизация (100%)
+- ✅ **Фаза 6:** Общая библиотека (90%)
 
 ## 📝 Лицензия
 

@@ -1,22 +1,26 @@
-import logging
+"""
+Автоматический организатор файлов для папки Загрузки.
+Сортирует файлы по категориям в реальном времени используя watchdog.
+"""
+
 import os
 import shutil
-import sys
 import time
 from pathlib import Path
+from typing import Dict, List
 
 from docx import Document
 from pypdf import PdfReader
 from watchdog.events import FileSystemEventHandler
 from watchdog.observers import Observer
 
-# Настройка логирования
-logging.basicConfig(
-    level=logging.INFO,
-    format="%(asctime)s - %(levelname)s - %(message)s",
-    handlers=[logging.FileHandler("organizer.log", encoding="utf-8"), logging.StreamHandler()],
-)
-logger = logging.getLogger(__name__)
+from common.file_utils import wait_for_file_ready
+
+# Используем common library
+from common.logger import setup_logger
+
+# Настройка логирования через common.logger
+logger = setup_logger("FileOrganizer", log_file=Path(__file__).parent / "organizer.log")
 
 # --- КОНФИГУРАЦИЯ ---
 
@@ -75,28 +79,7 @@ CATEGORIES = {
 # --- ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ ---
 
 
-def wait_for_file_ready(file_path: Path, timeout: int = 10) -> bool:
-    """
-    Ждет пока файл перестанет изменяться (завершится загрузка).
-
-    Args:
-        file_path: Путь к файлу
-        timeout: Максимальное время ожидания в секундах
-
-    Returns:
-        True если файл готов, False если timeout
-    """
-    last_size = -1
-    for _ in range(timeout):
-        try:
-            current_size = file_path.stat().st_size
-            if current_size == last_size and current_size > 0:
-                return True
-            last_size = current_size
-            time.sleep(1)
-        except OSError:
-            time.sleep(1)
-    return False
+# Функция wait_for_file_ready теперь импортируется из common.file_utils---
 
 
 # --- ФУНКЦИИ АНАЛИЗА КОНТЕНТА ---
