@@ -30,12 +30,5 @@ repos:
       - id: check-merge-conflict
       - id: detect-private-key
 
-  # MyPy - проверка типов (опционально, может падать)
-  - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v1.11.1
-    hooks:
-      - id: mypy
-        language_version: python3.14
-        args: [--ignore-missing-imports]
-        additional_dependencies: [types-all]
-        exclude: ^(tests/|build/|dist/)
+  # MyPy проверка отключена - запускается через GitHub Actions
+  # Причина: конфликт зависимостей types-all в pre-commit окружении
