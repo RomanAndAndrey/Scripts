@@ -9,13 +9,14 @@ import sys
 from pathlib import Path
 from typing import Any, Dict
 
-# Настройка логирования
-logging.basicConfig(
-    level=logging.INFO,
-    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
-    handlers=[logging.FileHandler("launcher.log", encoding="utf-8"), logging.StreamHandler()],
-)
-logger = logging.getLogger(__name__)
+# Добавляем родительскую директорию для импорта common
+sys.path.insert(0, str(Path(__file__).parent.parent))
+
+from common.config import load_json_config
+from common.logger import setup_logger
+
+# Логгер через common
+logger = setup_logger("DesktopLauncher.utils", log_file=Path(__file__).parent / "launcher.log")
 
 
 def load_scripts_config(config_path: str = "scripts_config.json") -> Dict[str, Any]:
@@ -32,15 +33,12 @@ def load_scripts_config(config_path: str = "scripts_config.json") -> Dict[str, A
         script_dir = Path(__file__).parent
         full_path = script_dir / config_path
 
-        with open(full_path, "r", encoding="utf-8") as f:
-            data = json.load(f)
-            logger.info(f"Loaded {len(data.get('scripts', {}))} scripts from config")
-            return data.get("scripts", {})
-    except FileNotFoundError:
-        logger.error(f"Config file not found: {config_path}")
-        return {}
-    except json.JSONDecodeError as e:
-        logger.error(f"JSON decode error in {config_path}: {e}")
+        config_data = load_json_config(full_path)
+        scripts = config_data.get("scripts", {})
+        logger.info(f"Loaded {len(scripts)} scripts from config")
+        return scripts
+    except Exception as e:
+        logger.error(f"Error loading config: {e}")
         return {}
 
 

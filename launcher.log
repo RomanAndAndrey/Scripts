@@ -31,3 +31,24 @@
 2025-12-30 01:56:57,057 - utils - INFO - Script finished: Тестовый Пинг, exit code: 1
 2025-12-30 01:56:58,975 - utils - INFO - User stopped script: Организатор Файлов
 2025-12-30 01:56:58,978 - utils - INFO - Script finished: Организатор Файлов, exit code: 1
+2025-12-30 16:16:59,492 - utils - INFO - Loaded 7 scripts from config
+2025-12-30 16:16:59,934 - utils - INFO - Application started successfully
+2025-12-30 16:17:05,800 - utils - INFO - Starting script: Организатор Файлов
+2025-12-30 16:17:06,382 - utils - INFO - Script finished: Организатор Файлов, exit code: 1
+2025-12-30 16:21:30,032 - utils - INFO - Starting script: Организатор Файлов
+2025-12-30 16:22:41,458 - utils - INFO - User stopped script: Организатор Файлов
+2025-12-30 16:22:41,462 - utils - INFO - Script finished: Организатор Файлов, exit code: 1
+2025-12-30 16:27:41,657 - utils - INFO - Loaded 7 scripts from config
+2025-12-30 16:27:42,251 - utils - INFO - Application started successfully
+2025-12-30 16:27:46,248 - utils - INFO - Starting script: Организатор Файлов
+2025-12-30 16:27:48,697 - utils - INFO - User stopped script: Организатор Файлов
+2025-12-30 16:27:48,701 - utils - INFO - Script finished: Организатор Файлов, exit code: 1
+2025-12-30 16:45:00,129 - utils - INFO - Loaded 7 scripts from config
+2025-12-30 16:45:00,585 - utils - INFO - Application started successfully
+2025-12-30 16:45:06,139 - utils - INFO - Starting script: Организатор Файлов
+2025-12-30 16:45:37,332 - utils - INFO - User stopped script: Организатор Файлов
+2025-12-30 16:45:37,337 - utils - INFO - Script finished: Организатор Файлов, exit code: 1
+2025-12-30 22:20:50,493 - utils - INFO - Loaded 7 scripts from config
+2025-12-30 22:20:51,281 - utils - INFO - Application started successfully
+2025-12-30 22:20:59,837 - utils - INFO - Starting script: YouTube Downloader
+2025-12-30 22:21:10,556 - utils - INFO - Script finished: YouTube Downloader, exit code: 0
