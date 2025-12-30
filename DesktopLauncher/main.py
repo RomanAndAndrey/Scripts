@@ -92,6 +92,9 @@ class App(ctk.CTk):
 
         logger.info("Application started successfully")
 
+        # Проверка обновлений при запуске
+        self.after(2000, self._check_for_updates_on_startup)
+
     def _build_ui(self) -> None:
         """Строит пользовательский интерфейс."""
         # 1. Sidebar
@@ -111,12 +114,29 @@ class App(ctk.CTk):
         self.logo.pack(padx=20, pady=(20, 10))
 
         self.scroll_frame = ctk.CTkScrollableFrame(self.sidebar, fg_color="transparent")
-        self.scroll_frame.pack(fill="both", expand=True)
+        self.scroll_frame.pack(fill="both", expand=True, pady=(0, 10))
 
         for name in self.scripts_config.keys():
             item = SidebarItem(self.scroll_frame, name, self.select_script)
             item.pack(fill="x", pady=2)
             self.sidebar_items[name] = item
+
+        # Меню Help внизу sidebar
+        help_frame = ctk.CTkFrame(self.sidebar, fg_color="transparent")
+        help_frame.pack(side="bottom", fill="x", padx=10, pady=10)
+
+        update_btn = ctk.CTkButton(
+            help_frame,
+            text="🔄 Check for Updates",
+            command=self._manual_check_updates,
+            fg_color="transparent",
+            hover_color=("gray70", "gray30"),
+            height=30,
+            anchor="w",
+            border_width=1,
+            border_color=("gray70", "gray30"),
+        )
+        update_btn.pack(fill="x")
 
     def _build_main_area(self) -> None:
         """Строит основную область с описанием, вводом и консолью."""
@@ -395,6 +415,184 @@ class App(ctk.CTk):
             self.event_queue.put(("log", name, f"\n[EXCEPTION] {e}\n"))
             self.event_queue.put(("status", name, STATUS_ERROR))
             logger.error(f"Exception in script {name}: {e}", exc_info=True)
+
+    def _check_for_updates_on_startup(self):
+        """Автоматическая проверка обновлений при запуске."""
+        try:
+            from common.auto_update import AutoUpdater
+
+            version = get_version()
+            updater = AutoUpdater(
+                repo_owner="RomanAndAndrey",
+                repo_name="Scripts",
+                current_version=version,
+                app_name="DesktopLauncher",
+            )
+
+            has_update, new_version = updater.check_and_notify()
+
+            if has_update:
+                logger.info(f"Update available: {new_version}")
+                # Показываем небольшое уведомление
+                self._show_update_notification(new_version)
+
+        except Exception as e:
+            logger.warning(f"Failed to check for updates: {e}")
+
+    def _show_update_notification(self, new_version: str):
+        """Показывает уведомление о доступном обновлении."""
+        import tkinter.messagebox as messagebox
+
+        result = messagebox.askyesno(
+            "Update Available",
+            f"New version {new_version} is available!\n\n"
+            f"Current version: {get_version()}\n"
+            f"Would you like to download and install it now?",
+            icon="info",
+        )
+
+        if result:
+            self._download_and_install_update()
+
+    def _manual_check_updates(self):
+        """Ручная проверка обновлений из меню."""
+        try:
+            import tkinter.messagebox as messagebox
+
+            from common.auto_update import AutoUpdater
+
+            version = get_version()
+            updater = AutoUpdater(
+                repo_owner="RomanAndAndrey",
+                repo_name="Scripts",
+                current_version=version,
+                app_name="DesktopLauncher",
+            )
+
+            # Показываем прогресс
+            progress_window = ctk.CTkToplevel(self)
+            progress_window.title("Checking for Updates")
+            progress_window.geometry("400x150")
+            progress_window.transient(self)
+            progress_window.grab_set()
+
+            label = ctk.CTkLabel(
+                progress_window, text="Checking for updates...", font=("Arial", 14)
+            )
+            label.pack(pady=30)
+
+            has_update, new_version, download_url = updater.check_for_updates()
+
+            progress_window.destroy()
+
+            if has_update:
+                result = messagebox.askyesno(
+                    "Update Available",
+                    f"New version {new_version} is available!\n\n"
+                    f"Current version: {version}\n"
+                    f"Would you like to download and install it now?",
+                )
+
+                if result:
+                    self._download_and_install_update_with_progress(updater, download_url)
+            else:
+                messagebox.showinfo(
+                    "No Updates",
+                    f"You are running the latest version ({version})",
+                )
+
+        except Exception as e:
+            logger.error(f"Error checking for updates: {e}")
+            import tkinter.messagebox as messagebox
+
+            messagebox.showerror("Error", f"Failed to check for updates:\n{str(e)}")
+
+    def _download_and_install_update(self):
+        """Скачивает и устанавливает обновление (простая версия)."""
+        try:
+            from common.auto_update import AutoUpdater
+
+            version = get_version()
+            updater = AutoUpdater(
+                repo_owner="RomanAndAndrey",
+                repo_name="Scripts",
+                current_version=version,
+                app_name="DesktopLauncher",
+            )
+
+            _, _, download_url = updater.check_for_updates()
+            if download_url:
+                self._download_and_install_update_with_progress(updater, download_url)
+
+        except Exception as e:
+            logger.error(f"Update failed: {e}")
+
+    def _download_and_install_update_with_progress(self, updater, download_url: str):
+        """Скачивает и устанавливает обновление с progress bar."""
+        import threading
+        import tkinter.messagebox as messagebox
+
+        # Окно прогресса
+        progress_window = ctk.CTkToplevel(self)
+        progress_window.title("Downloading Update")
+        progress_window.geometry("500x200")
+        progress_window.transient(self)
+        progress_window.grab_set()
+
+        label = ctk.CTkLabel(progress_window, text="Downloading update...", font=("Arial", 14))
+        label.pack(pady=20)
+
+        progress_bar = ctk.CTkProgressBar(progress_window, width=400)
+        progress_bar.pack(pady=10)
+        progress_bar.set(0)
+
+        progress_label = ctk.CTkLabel(progress_window, text="0%")
+        progress_label.pack(pady=5)
+
+        downloaded_path = [None]
+        error = [None]
+
+        def progress_callback(downloaded, total):
+            if total > 0:
+                percent = (downloaded / total) * 100
+                progress_bar.set(downloaded / total)
+                progress_label.configure(
+                    text=f"{percent:.1f}% ({downloaded // 1024} KB / {total // 1024} KB)"
+                )
+
+        def download_thread():
+            try:
+                path = updater.download_update(download_url, progress_callback)
+                downloaded_path[0] = path
+            except Exception as e:
+                error[0] = str(e)
+
+        thread = threading.Thread(target=download_thread, daemon=True)
+        thread.start()
+
+        def check_download():
+            if thread.is_alive():
+                self.after(100, check_download)
+            else:
+                progress_window.destroy()
+
+                if error[0]:
+                    messagebox.showerror("Error", f"Download failed:\n{error[0]}")
+                elif downloaded_path[0]:
+                    # Применяем обновление
+                    success = updater.apply_update(downloaded_path[0])
+                    if success:
+                        # Приложение закроется само
+                        pass
+                    else:
+                        messagebox.showerror(
+                            "Error",
+                            "Failed to apply update. Please install manually.",
+                        )
+                else:
+                    messagebox.showerror("Error", "Download failed")
+
+        check_download()
 
 
 if __name__ == "__main__":

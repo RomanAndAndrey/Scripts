@@ -7,8 +7,9 @@ Common Library для проектов Рутина.
 - file_utils: Файловые операции
 - path_utils: Работа с путями
 - validators: Валидация данных
+- auto_update: Автоматические обновления
 - types: Общие типы
 """
 
 __version__ = "1.0.0"
-__all__ = ["logger", "config", "file_utils", "path_utils", "validators", "types"]
+__all__ = ["logger", "config", "file_utils", "path_utils", "validators", "auto_update", "types"]
