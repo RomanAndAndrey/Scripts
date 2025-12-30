@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  file-organizer:
+    build:
+      context: ../..
+      dockerfile: .docker/FileOrganizer/Dockerfile
+    container_name: rutina-file-organizer
+    volumes:
+      - ~/Downloads:/downloads
+    environment:
+      - DOWNLOADS_PATH=/downloads
+      - LOG_LEVEL=INFO
+    restart: unless-stopped
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+# Для будущих сервисов
+  # desktop-launcher:
+  #   build:
+  #     context: ../..
+  #     dockerfile: .docker/DesktopLauncher/Dockerfile
+  #   ports:
+  #     - "8501:8501"
+  #   restart: unless-stopped
+
+networks:
+  default:
+    name: rutina-network
