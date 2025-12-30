@@ -3,15 +3,26 @@ Desktop Script Launcher v2.1 - Refactored
 Менеджер для запуска и мониторинга Python скриптов с GUI интерфейсом.
 """
 
+import argparse
 import os
 import queue
 import subprocess
 import sys
 import threading
+from pathlib import Path
 from typing import Dict, Optional
 
 import customtkinter as ctk
 from dependency_checker import check_script_dependencies
+
+
+def get_version() -> str:
+    """Получает версию из VERSION файла."""
+    version_file = Path(__file__).parent.parent / "VERSION"
+    if version_file.exists():
+        return version_file.read_text().strip()
+    return "Unknown"
+
 
 # Локальные модули
 from constants import (
@@ -46,7 +57,8 @@ class App(ctk.CTk):
     def __init__(self):
         super().__init__()
 
-        self.title("Desktop Script Launcher v2.1")
+        version = get_version()
+        self.title(f"Desktop Script Launcher v{version}")
         self.geometry("1000x700")
 
         self.grid_columnconfigure(1, weight=1)
@@ -386,5 +398,16 @@ class App(ctk.CTk):
 
 
 if __name__ == "__main__":
+    # Парсинг аргументов командной строки
+    parser = argparse.ArgumentParser(description="Desktop Script Launcher")
+    parser.add_argument("--version", action="store_true", help="Show version and exit")
+    args = parser.parse_args()
+
+    if args.version:
+        version = get_version()
+        print(f"Desktop Script Launcher v{version}")
+        sys.exit(0)
+
+    # Запуск приложения
     app = App()
     app.mainloop()
