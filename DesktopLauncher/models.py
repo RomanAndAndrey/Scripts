@@ -5,7 +5,7 @@
 import subprocess
 from typing import Any, Dict, List, Optional
 
-from constants import STATUS_STOPPED
+from DesktopLauncher.constants import STATUS_STOPPED
 
 
 class ScriptState:

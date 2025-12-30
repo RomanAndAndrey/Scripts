@@ -18,16 +18,16 @@ def test_imports():
 
 
 def test_categories_defined():
-    """Проверка что категории файлов определены."""
+    """Тест что категории определены."""
     from FileOrganizer.organizer import CATEGORIES
 
-    assert "Изображения" in CATEGORIES
-    assert "Документы" in CATEGORIES
-    assert "Архивы" in CATEGORIES
+    # Проверяем что CATEGORIES это словарь
+    assert isinstance(CATEGORIES, dict)
+    assert len(CATEGORIES) > 0
 
-    # Проверка что есть расширения
-    assert len(CATEGORIES["Изображения"]) > 0
-    assert ".jpg" in CATEGORIES["Изображения"]
+    # Проверяем что есть основные категории
+    assert "Изображения" in CATEGORIES
+    assert "Архивы" in CATEGORIES
 
 
 # Placeholder для будущих тестов

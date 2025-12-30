@@ -8,7 +8,7 @@ from typing import Any, Callable, Dict, List, Optional
 
 import customtkinter as ctk
 
-from constants import COLORS, SCRIPT_ICONS, SIZES, STATUS_STOPPED
+from DesktopLauncher.constants import COLORS, SCRIPT_ICONS, SIZES, STATUS_STOPPED
 
 
 class SidebarItem(ctk.CTkFrame):
