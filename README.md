@@ -54,7 +54,17 @@ config = load_json_config(Path("config.json"), create_if_missing=True)
 
 См. [common/README.md](./common/README.md) для подробностей.
 
+> [!IMPORTANT]
+> Для скриптов, находящихся в подпапках (FileOrganizer, Anti-AltTab и т.д.), необходимо добавить родительскую директорию в `sys.path`:
+> ```python
+> import sys
+> from pathlib import Path
+> sys.path.insert(0, str(Path(__file__).parent.parent))
+> ```
+
 ---
+
+## 📋 Требования
 
 - **Python 3.11+**
 - **CustomTkinter** - GUI
@@ -62,7 +72,6 @@ config = load_json_config(Path("config.json"), create_if_missing=True)
 - **CI/CD**: GitHub Actions, Pre-commit hooks
 - **Testing**: Pytest
 
-## 📋 Требования
 
 ```bash
 pip install -r requirements.txt

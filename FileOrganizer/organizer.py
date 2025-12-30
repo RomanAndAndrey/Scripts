@@ -5,9 +5,13 @@
 
 import os
 import shutil
+import sys
 import time
 from pathlib import Path
 from typing import Dict, List
+
+# Добавляем родительскую директорию в sys.path для импорта common
+sys.path.insert(0, str(Path(__file__).parent.parent))
 
 from docx import Document
 from pypdf import PdfReader
