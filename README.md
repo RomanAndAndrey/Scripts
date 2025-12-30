@@ -1,10 +1,11 @@
 # Рутина - Автоматизация Рутинных Задач
 
-Коллекция Python утилит для автоматизации повседневных задач.
-
-![Code Quality](https://github.com/username/Рутина/workflows/Python%20Code%20Quality%20Checks/badge.svg)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/RomanAndAndrey/Scripts?style=for-the-badge&logo=github&color=blue)
+![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/RomanAndAndrey/Scripts/build-desktop-launcher.yml?style=for-the-badge&logo=github-actions&label=Build)
+![Python Version](https://img.shields.io/badge/python-3.14-blue?style=for-the-badge&logo=python)
 ![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)
-![Imports: isort](https://img.shields.io/badge/%20imports-isort-%231674b1?style=flat&labelColor=ef8336)
+
+Коллекция Python утилит для автоматизации повседневных задач.
 
 ## 📦 Проекты
 
@@ -31,6 +32,34 @@ AI-ассистент с распознаванием речи через Whispe
 
 ### 🚀 [ScriptLauncher](./ScriptLauncher)
 Web-интерфейс на Streamlit для запуска Python скриптов.
+
+
+---
+
+## 📥 Установка
+
+### Для Пользователей (Легко!)
+
+**📦 Скачайте готовые .exe:**
+1. Перейдите на [Releases](https://github.com/RomanAndAndrey/Scripts/releases)
+2. Скачайте нужный проект (DesktopLauncher, FileOrganizer, Anti-AltTab, DotaCoach)
+3. Запустите - готово! ✅
+
+**Никакого Python, никаких зависимостей!**
+
+### 🐳 Docker
+```bash
+docker pull ghcr.io/romanandandrey/rutina-file-organizer:latest
+docker-compose up -d file-organizer
+```
+
+### 👨‍💻 Для Разработчиков
+```bash
+git clone https://github.com/RomanAndAndrey/Scripts.git
+cd Scripts
+pip install -r requirements.txt
+python DesktopLauncher/main.py
+```
 
 ---
 
